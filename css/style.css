@@ -45,12 +45,12 @@ body {
 }
 
 .areaContactUser {
-    flex-basis: 35%;
+    flex-basis: 33%;
+    border-right: 1px solid #dcdcdc;
 }
 
 .areaChatInUse {
     flex-grow: 1;
-    border-left: 1.5px solid #dcdcdc;
 }
 
 .infoAccount {
@@ -219,6 +219,41 @@ body {
     flex-grow: 1;
 }
 
+.areaChat ul{
+    list-style-type: none;
+    width: 100%;
+    padding: 50px 75px;
+    display: flex;
+    flex-direction: column;
+}
+
+.areaChat ul li{
+    width: 40%;
+    padding: 15px 10px;
+    font-size: 0.8rem;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.areaChat ul .sent{
+    background-color: #d5f9ba;
+    align-self: end;
+}
+
+.areaChat ul li .timeMessage{
+    position: absolute;
+    font-size: 0.5rem;
+    color: #9d9d9d;
+    bottom: 2px;
+    right: 5px;
+}
+
+.areaChat ul .received{
+    background-color: #fff;
+    align-self: start;
+}
+
 .areaSendMessage{
     display: flex;
     justify-content: space-between;
@@ -228,7 +263,7 @@ body {
 }
 
 .areaSendMessage i{
-    color: #777777;
+    color: #777;
     font-size: 1.3rem;
     padding: 0 30px;
 }
