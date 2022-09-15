@@ -166,6 +166,11 @@ const app = new Vue({
         ]
     },
     methods: {
-
+        getUrlAvatar(index){
+            return `img/avatar${this.contacts[index].avatar}.jpg`;
+        },        
+        getAltAvatar(index){
+            return `Avatar${this.contacts[index].avatar}`;
+        }
     }
 });

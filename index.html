@@ -7,12 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boolzapp</title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.10/compiler-sfc.min.js"
-        integrity="sha512-Wv/dnU62KAAYh3ot213iI46gHY3gvWdyd+deG5WH8rGTMxn4MxW/d7RpP+RBjcw5yaoyVyYgVnlcMnzRqjBGNQ=="
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.10/vue.min.js"
+        integrity="sha512-H8u5mlZT1FD7MRlnUsODppkKyk+VEiCmncej8yZW1k/wUT90OQon0F9DSf/2Qh+7L/5UHd+xTLrMszjHEZc2BA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
     <link rel="shortcut icon" href="img/whatsapp - favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
@@ -29,7 +32,7 @@ nome e immagine di ogni contatto
  -->
 
 <body>
-    <div id="root">
+    <div id="root">   
         <div class="container">
             <span></span> <!-- Span utilizzato per ricreare la barra verde di sfondo -->
             <div class="areaWhatsapp">
@@ -73,88 +76,11 @@ nome e immagine di ogni contatto
 
                     <!-- Area di sinistra per gli account utenti -->
                     <div class="areaUsers">
-                        <div class="user active">
+                        <div v-for="(contact, index) in contacts" class="user">
                             <div class="graphicAccount">
-                                <img src="img/avatar_1.jpg" alt="User 1">
+                                <img :src="getUrlAvatar(index)" :alt="getAltAvatar(index)">
                                 <div class="dataUser colorText">
-                                    <p>Michele</p>
-                                    <p>Ultimo messaggio inviato</p>
-                                </div>
-                            </div>
-                            <p class="timesLastMess">12:00</p>
-                        </div>
-
-                        <div class="user">
-                            <div class="graphicAccount">
-                                <img src="img/avatar_2.jpg" alt="User 2">
-                                <div class="dataUser colorText">
-                                    <p>Michele</p>
-                                    <p>Ultimo messaggio inviato</p>
-                                </div>
-                            </div>
-                            <p class="timesLastMess">12:00</p>
-                        </div>
-
-                        <div class="user">
-                            <div class="graphicAccount">
-                                <img src="img/avatar_3.jpg" alt="User 3">
-                                <div class="dataUser colorText">
-                                    <p>Michele</p>
-                                    <p>Ultimo messaggio inviato</p>
-                                </div>
-                            </div>
-                            <p class="timesLastMess">12:00</p>
-                        </div>
-
-                        <div class="user">
-                            <div class="graphicAccount">
-                                <img src="img/avatar_4.jpg" alt="User 4">
-                                <div class="dataUser colorText">
-                                    <p>Michele</p>
-                                    <p>Ultimo messaggio inviato</p>
-                                </div>
-                            </div>
-                            <p class="timesLastMess">12:00</p>
-                        </div>
-
-                        <div class="user">
-                            <div class="graphicAccount">
-                                <img src="img/avatar_5.jpg" alt="User 5">
-                                <div class="dataUser colorText">
-                                    <p>Michele</p>
-                                    <p>Ultimo messaggio inviato</p>
-                                </div>
-                            </div>
-                            <p class="timesLastMess">12:00</p>
-                        </div>
-
-                        <div class="user">
-                            <div class="graphicAccount">
-                                <img src="img/avatar_6.jpg" alt="User 6">
-                                <div class="dataUser colorText">
-                                    <p>Michele</p>
-                                    <p>Ultimo messaggio inviato</p>
-                                </div>
-                            </div>
-                            <p class="timesLastMess">12:00</p>
-                        </div>
-
-                        <div class="user">
-                            <div class="graphicAccount">
-                                <img src="img/avatar_7.jpg" alt="User 7">
-                                <div class="dataUser colorText">
-                                    <p>Michele</p>
-                                    <p>Ultimo messaggio inviato</p>
-                                </div>
-                            </div>
-                            <p class="timesLastMess">12:00</p>
-                        </div>
-
-                        <div class="user">
-                            <div class="graphicAccount">
-                                <img src="img/avatar_8.jpg" alt="User 8">
-                                <div class="dataUser colorText">
-                                    <p>Michele</p>
+                                    <p>{{contact.name}}</p>
                                     <p>Ultimo messaggio inviato</p>
                                 </div>
                             </div>
