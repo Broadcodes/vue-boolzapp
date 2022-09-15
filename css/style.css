@@ -7,3 +7,25 @@
 body {
     font-family: sans-serif;
 }
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: #dadbd4;
+    position: relative;
+    z-index: 0;
+}
+
+.container>span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: calc(100vh / 6);
+    background-color: #009688;
+}
+
