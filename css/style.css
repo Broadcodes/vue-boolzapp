@@ -106,7 +106,7 @@ body {
 
 .notificationArea {
     background-color: #8edafc;
-    height: 75px;
+    height: 80px;
 }
 
 .notificationArea p {
@@ -214,13 +214,29 @@ body {
 }
 
 .areaChatInUse .areaChat{
+    overflow-y: scroll;
     background-image: url("../img/mine.jpg");
     flex-grow: 1;
 }
 
 .areaSendMessage{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 55px;
+    background-color: #f3eeea;
+}
+
+.areaSendMessage i{
+    color: #777777;
+    font-size: 1.3rem;
+    padding: 0 30px;
+}
+
+.areaSendMessage input{
+    flex-grow: 1;
+    height: 70%;
+    border: none;
+    padding: 0 10px;
+    border-radius: 5px;
 }
