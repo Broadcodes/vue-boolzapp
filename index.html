@@ -24,15 +24,14 @@
 </head>
 
 <!-- 
-Milestone 1
-● Replica della grafica con la possibilità di avere messaggi scritti dall’utente (verdi) e
-dall’interlocutore (bianco) assegnando due classi CSS diverse
-● Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, visualizzare
-nome e immagine di ogni contatto
+Milestone 2
+● Visualizzazione dinamica dei messaggi: tramite la direttiva v-for, visualizzare tutti i
+messaggi relativi al contatto attivo all’interno del pannello della conversazione
+● Click sul contatto mostra la conversazione del contatto cliccato
  -->
 
 <body>
-    <div id="root">   
+    <div id="root">
         <div class="container">
             <span></span> <!-- Span utilizzato per ricreare la barra verde di sfondo -->
             <div class="areaWhatsapp">
@@ -76,7 +75,8 @@ nome e immagine di ogni contatto
 
                     <!-- Area di sinistra per gli account utenti -->
                     <div class="areaUsers">
-                        <div v-for="(contact, index) in contacts" class="user">
+                        <div v-for="(contact, index) in contacts" class="user" @click="changeVisible(index)"
+                            :class="{'active': contact.visible}">
                             <div class="graphicAccount">
                                 <img :src="getUrlAvatar(index)" :alt="getAltAvatar(index)">
                                 <div class="dataUser colorText">
@@ -92,10 +92,10 @@ nome e immagine di ogni contatto
                 <div class="areaChatInUse">
                     <!-- Area superiore barra grigia destra -->
                     <div class="infoAccount">
-                        <div class="graphicAccount">
-                            <img src="img/avatar_1.jpg" alt="User 1">
+                        <div v-for="(contact, index) in contacts" v-if="contact.visible" class="graphicAccount">
+                            <img :src="getUrlAvatar(index)" :alt="getAltAvatar(index)">
                             <div class="dataUser">
-                                <p>Michele</p>
+                                <p>{{contact.name}}</p>
                                 <p>Ultimo accesso oggi alle 12:00</p>
                             </div>
                         </div>

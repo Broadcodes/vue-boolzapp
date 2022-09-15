@@ -185,6 +185,7 @@ body {
     position: relative;
     height: 58px;
     border-bottom: 1px solid #f3f3f3;
+    cursor: pointer;
 }
 
 .user img {
