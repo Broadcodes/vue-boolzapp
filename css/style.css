@@ -8,18 +8,19 @@ body {
     font-family: sans-serif;
 }
 
-.container{
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100vh;
-    background-color: #dadbd4;
+    background: rgb(218, 219, 212);
+    background: linear-gradient(180deg, rgba(218, 219, 212, 1) 10%, rgba(210, 219, 219, 1) 90%);
     position: relative;
     z-index: 0;
 }
 
-.container>span{
+.container>span {
     position: absolute;
     top: 0;
     left: 0;
@@ -29,30 +30,30 @@ body {
     background-color: #009688;
 }
 
-.areaWhatsapp{
+.areaWhatsapp {
     z-index: 2;
     display: flex;
     width: 80%;
-    height: 93vh;
+    height: 95vh;
     background-color: #fff;
 }
 
 .areaContactUser,
-.areaChatInUse{
+.areaChatInUse {
     display: flex;
     flex-direction: column;
 }
 
-.areaContactUser{
+.areaContactUser {
     flex-basis: 35%;
 }
 
-.areaChatInUse{
+.areaChatInUse {
     flex-grow: 1;
     border-left: 1.5px solid #dcdcdc;
 }
 
-.infoAccount{
+.infoAccount {
     width: 100%;
     padding: 8px 10px;
     display: flex;
@@ -61,58 +62,58 @@ body {
     background-color: #eaeaea;
 }
 
-.infoAccount p{
+.infoAccount p {
     font-size: 0.9rem;
 }
 
 .infoAccount img,
-.user img{
+.user img {
     border-radius: 50px;
     margin-right: 12px;
 }
 
-.infoAccount img{
+.infoAccount img {
     width: 45px;
     height: 45px;
 }
 
 .graphicAccount,
-.controllerAccount{
+.controllerAccount {
     display: flex;
     align-items: center;
 }
 
-.controllerAccount a{
+.controllerAccount a {
     margin: 0 8px;
     color: #b1b1b1;
     font-size: 1.1rem;
 }
 
 .enableNotifications a p,
-.dataUser p:nth-child(2){
+.dataUser p:nth-child(2) {
     font-size: 0.7rem;
     padding: 3px 0;
     color: #7f7f7f;
 }
 
 .notificationArea,
-.user{
+.user {
     width: 100%;
     display: flex;
     align-items: center;
     padding: 0 20px;
 }
 
-.notificationArea{
+.notificationArea {
     background-color: #8edafc;
     height: 75px;
 }
 
-.notificationArea p{
+.notificationArea p {
     font-size: 0.9rem;
 }
 
-.imageBell{
+.imageBell {
     width: 40px;
     height: 40px;
     display: flex;
@@ -123,44 +124,90 @@ body {
     margin-right: 10px;
 }
 
-.imageBell i{
+.imageBell i {
     font-size: 1.1rem;
     color: #8edafc;
 }
 
-.areaUsers{
+.activeSearch{
+    width: 100%;
+    height: 45px;
+    padding: 4px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fafafa;
+}
+
+.searchIcon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 15%;
+    height: 100%;
+    background-color: #fff;
+    border: 1px solid #f3f3f3;
+}
+
+.searchIcon i{
+    font-size: 0.8rem;
+    color: #a4a4a4;
+}
+
+.searchUser{
+    height: 100%;
+    flex-grow: 1;
+}
+
+.searchUser input{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border: 1px solid #f3f3f3;
+    border-left: none;
+    padding: 5px;
+    font-size: 0.7rem;
+}
+
+.searchUser input:focus-visible{
+    outline: none;
+    border: 1px solid #f3f3f3;
+    border-left: none;
+}
+
+.areaUsers {
     height: 100%;
     overflow-y: scroll;
 }
 
-.user{
+.user {
     position: relative;
     height: 58px;
     border-bottom: 1px solid #f3f3f3;
 }
 
-.user img{
+.user img {
     width: 43px;
     height: 43px;
 }
 
-.user.active{
+.user.active {
     background-color: #e9ebeb;
 }
 
-.user .dataUser p{
+.user .dataUser p {
     position: relative;
     top: -3px;
     font-size: 0.9rem;
 }
 
 .colorText p:nth-child(2),
-.user .timesLastMess{
+.user .timesLastMess {
     color: #c6c6c6;
     font-size: 0.7rem;
 }
 
-.user .timesLastMess{
+.user .timesLastMess {
     position: absolute;
     top: 10px;
     right: 10px;
