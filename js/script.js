@@ -179,6 +179,9 @@ const app = new Vue({
                     this.contacts[indexElement].visible = !this.contacts[indexElement].visible;
                 }
             });
+        },
+        getDate(messages){
+            return `${messages.slice(11, 16)}`;
         }
     }
 });

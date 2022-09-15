@@ -84,7 +84,9 @@ messaggi relativi al contatto attivo all’interno del pannello della conversazi
                                     <p>Ultimo messaggio inviato</p>
                                 </div>
                             </div>
-                            <p class="timesLastMess">12:00</p>
+                            <p v-for="(element, indexElement) in contact.messages"
+                            v-if="element.status === 'received' && indexElement > 0"
+                            class="timesLastMess">{{getDate(element.date)}}</p>
                         </div>
                     </div>
                 </div>
@@ -96,7 +98,14 @@ messaggi relativi al contatto attivo all’interno del pannello della conversazi
                             <img :src="getUrlAvatar(index)" :alt="getAltAvatar(index)">
                             <div class="dataUser">
                                 <p>{{contact.name}}</p>
-                                <p>Ultimo accesso oggi alle 12:00</p>
+                                <p>Ultimo accesso oggi alle
+                                    <span v-for="(element, indexElement) in contact.messages"
+                                    v-if="element.status === 'received' && indexElement > 0">
+                                       {{getDate(element.date)}}
+                                    </span>
+                                    
+
+                                </p>
                             </div>
                         </div>
                         <div class="controllerAccount">
@@ -106,19 +115,11 @@ messaggi relativi al contatto attivo all’interno del pannello della conversazi
                         </div>
                     </div>
                     <!-- Area centrale destra dedicata alla chat -->
-                    <div class="areaChat">
+                    <div class="areaChat" v-for="contact in contacts" v-if="contact.visible">
                         <ul>
-                            <li class="sent">
-                                <p>Hai portato a spasso il cane?</p>
-                                <p class="timeMessage">15:30</p>
-                            </li>
-                            <li class="sent">
-                                <p>Ricordati di stendere i panni</p>
-                                <p class="timeMessage">15:50</p>
-                            </li>
-                            <li class="received">
-                                <p>Tutto fatto!</p>
-                                <p class="timeMessage">16:15</p>
+                            <li v-for="textMessages in contact.messages" :class="textMessages.status">
+                                <p>{{textMessages.message}}</p>
+                                <p class="timeMessage">{{getDate(textMessages.date)}}</p>
                             </li>
                         </ul>
                     </div>
