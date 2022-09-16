@@ -24,10 +24,11 @@
 </head>
 
 <!-- 
-Milestone 2
-● Visualizzazione dinamica dei messaggi: tramite la direttiva v-for, visualizzare tutti i
-messaggi relativi al contatto attivo all’interno del pannello della conversazione
-● Click sul contatto mostra la conversazione del contatto cliccato
+Milestone 3
+● Aggiunta di un messaggio: l’utente scrive un testo nella parte bassa e digitando
+“enter” il testo viene aggiunto al thread sopra, come messaggio verde
+● Risposta dall’interlocutore: ad ogni inserimento di un messaggio, l’utente riceverà
+un “ok” come risposta, che apparirà dopo 1 secondo.
  -->
 
 <body>
@@ -85,8 +86,8 @@ messaggi relativi al contatto attivo all’interno del pannello della conversazi
                                 </div>
                             </div>
                             <p v-for="(element, indexElement) in contact.messages"
-                            v-if="element.status === 'received' && indexElement > 0"
-                            class="timesLastMess">{{getDate(element.date)}}</p>
+                                v-if="element.status === 'received' && indexElement > 0" class="timesLastMess">
+                                {{getDate(element.date)}}</p>
                         </div>
                     </div>
                 </div>
@@ -100,11 +101,9 @@ messaggi relativi al contatto attivo all’interno del pannello della conversazi
                                 <p>{{contact.name}}</p>
                                 <p>Ultimo accesso oggi alle
                                     <span v-for="(element, indexElement) in contact.messages"
-                                    v-if="element.status === 'received' && indexElement > 0">
-                                       {{getDate(element.date)}}
+                                        v-if="element.status === 'received' && indexElement > 0">
+                                        {{getDate(element.date)}}
                                     </span>
-                                    
-
                                 </p>
                             </div>
                         </div>
@@ -126,8 +125,9 @@ messaggi relativi al contatto attivo all’interno del pannello della conversazi
                     <!-- Area inferiore barra grigia destra per l'invio dei messaggi-->
                     <div class="areaSendMessage">
                         <a href="#"><i class="fa-regular fa-face-smile"></i></a>
-                        <input type="text" placeholder="Scrivi un messaggio">
-                        <a href="#"><i class="fa-solid fa-microphone"></i></a>
+                        <input type="text" placeholder="Scrivi un messaggio" v-model="textInput" @keyup.enter="addNewMessage">
+                        <a href="#" v-if="textInput.length > 0" @click="addNewMessage"><i class="fa-solid fa-paper-plane"></i></a>
+                        <a href="#" v-else><i class="fa-solid fa-microphone"></i></a>
                     </div>
                 </div>
             </div>

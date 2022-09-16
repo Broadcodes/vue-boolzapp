@@ -1,6 +1,7 @@
 const app = new Vue({
     el: '#root',
     data: {
+        textInput: '',
         contacts: [
             {
                 name: 'Michele',
@@ -180,8 +181,28 @@ const app = new Vue({
                 }
             });
         },
-        getDate(messages){
+        getDate(messages) {
             return `${messages.slice(11, 16)}`;
+        },
+        addNewMessage() {
+            const newMessage = {
+                date: '',
+                message: '',
+                status: ''
+            };
+
+            this.contacts.forEach(contact => {
+                if (contact.visible === true) {
+                    newMessage.date = '10/01/2020 15:51:00';
+                    newMessage.date = `${new Date().getDate()}/0${new Date().getMonth() + 1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
+                    newMessage.message = this.textInput;
+                    newMessage.status = 'sent';
+
+                    contact.messages.push(newMessage);
+                }
+            });
+
+            this.textInput = '';
         }
     }
 });
