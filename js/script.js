@@ -3,7 +3,9 @@ const app = new Vue({
     data: {
         textInput: '',
         userSearch: '',
-        contacts
+        contacts,
+        indexShowDetailsMessage: '',
+        showDetailsMessage: false
     },
     methods: {
         getUrlAvatar(index) {
@@ -20,8 +22,17 @@ const app = new Vue({
                 }
             });
         },
-        getDate(messages) {
-            return `${messages.slice(11, 16)}`;
+        getDateUser(contact) {
+
+            const secondArr = [];
+
+            contact.messages.forEach(elementArr => {
+                if (elementArr.status === 'received') {
+                    secondArr.push(elementArr.date);
+                }
+            });
+
+            return `${secondArr[secondArr.length - 1].slice(11, 16)}`;
         },
         addNewMessage() {
             const newMessage = {
@@ -36,23 +47,25 @@ const app = new Vue({
                 status: ''
             };
 
-            this.contacts.forEach(contact => {
-                if (contact.visible === true) {
-                    newMessage.date = `${new Date().getDate()}/0${new Date().getMonth() + 1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
-                    newMessage.message = this.textInput;
-                    newMessage.status = 'sent';
+            if (this.textInput.length > 0) {
+                this.contacts.forEach(contact => {
+                    if (contact.visible === true) {
+                        newMessage.date = `${new Date().getDate()}/0${new Date().getMonth() + 1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
+                        newMessage.message = this.textInput;
+                        newMessage.status = 'sent';
 
-                    contact.messages.push(newMessage);
+                        contact.messages.push(newMessage);
 
-                    const replyMessage = setTimeout(() => {
-                        newMessageUser.date = `${new Date().getDate()}/0${new Date().getMonth() + 1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
-                        newMessageUser.message = "OK";
-                        newMessageUser.status = 'received';
+                        const replyMessage = setTimeout(() => {
+                            newMessageUser.date = `${new Date().getDate()}/0${new Date().getMonth() + 1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
+                            newMessageUser.message = "OK";
+                            newMessageUser.status = 'received';
 
-                        contact.messages.push(newMessageUser);
-                    }, 1000);
-                }
-            });
+                            contact.messages.push(newMessageUser);
+                        }, 1000);
+                    }
+                });
+            }
 
             this.textInput = '';
         },
@@ -67,6 +80,18 @@ const app = new Vue({
                 }
             });
             return element;
+        },
+        showDetails(index) {
+            const element = this.indexShowDetailsMessage = index;
+            return element;
+        },
+        showHide() {
+            if(this.showDetailsMessage === true){
+                this.showDetailsMessage = false;
+            } else {
+                this.showDetailsMessage = true;
+            }
         }
+
     }
 });

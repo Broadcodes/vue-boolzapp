@@ -130,7 +130,7 @@ body {
     color: #8edafc;
 }
 
-.activeSearch{
+.activeSearch {
     width: 100%;
     height: 45px;
     padding: 4px 5px;
@@ -140,7 +140,7 @@ body {
     background-color: #fafafa;
 }
 
-.searchIcon{
+.searchIcon {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -150,17 +150,17 @@ body {
     border: 1px solid #f3f3f3;
 }
 
-.searchIcon i{
+.searchIcon i {
     font-size: 0.8rem;
     color: #a4a4a4;
 }
 
-.searchUser{
+.searchUser {
     height: 100%;
     flex-grow: 1;
 }
 
-.searchUser input{
+.searchUser input {
     width: 100%;
     height: 100%;
     background-color: #fff;
@@ -170,7 +170,7 @@ body {
     font-size: 0.7rem;
 }
 
-.searchUser input:focus-visible{
+.searchUser input:focus-visible {
     outline: none;
     border: 1px solid #f3f3f3;
     border-left: none;
@@ -215,62 +215,125 @@ body {
     right: 10px;
 }
 
-.areaChatInUse .areaChat{
+.areaChatInUse .areaChat {
     overflow-y: scroll;
+    display: flex;
+    /* flex-direction: column-reverse; */
     background-image: url("../img/mine.jpg");
     flex-grow: 1;
 }
 
-.areaChat ul{
+.areaChat > ul {
     list-style-type: none;
     width: 100%;
     padding: 50px 75px;
     display: flex;
     flex-direction: column;
+    position: relative;
+    top: 0px;
 }
 
-.areaChat ul li{
+.areaChat > ul > li {
+    display: flex;
     width: 40%;
-    padding: 15px 10px;
+    padding: 10px;
     font-size: 0.8rem;
     border-radius: 8px;
     margin-bottom: 10px;
     position: relative;
 }
 
-.areaChat ul .sent{
+.areaChat > ul > li p{
+    padding-right: 20px;
+    line-height: 1.3rem;
+}
+
+.areaChat > ul > li span,
+.messageDetail {
+    display: none;
+}
+
+.areaChat > ul > li:hover span {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    color: rgb(177, 177, 177);
+    z-index: 5;
+}
+
+.boxInfoMessage{
+    display: none;
+}
+
+.areaChat > ul > li .boxInfoMessage.view{
+    display: block;
+}
+
+.boxInfoMessage > ul{
+    position: absolute;
+    top: 30px;
+    right: 7px;
+    width: 170px;
+    height: 80px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 8px rgb(177, 177, 177);
+    background-color: #fff;
+    z-index: 5;
+}
+
+.boxInfoMessage > ul li{
+    list-style-type: none;
+    display: flex;
+    padding-left: 20px;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+    cursor: pointer;
+}
+
+.boxInfoMessage > ul li:hover{
+    background-color: #f6f6f6;
+}
+
+.areaChat > ul .sent {
     background-color: #d5f9ba;
     align-self: end;
 }
 
-.areaChat ul li .timeMessage{
+.areaChat > ul > li .timeMessage {
     position: absolute;
     font-size: 0.5rem;
     color: #9d9d9d;
     bottom: 2px;
-    right: 5px;
+    right: -8px;
 }
 
-.areaChat ul .received{
+.areaChat > ul .received {
     background-color: #fff;
     align-self: start;
 }
 
-.areaSendMessage{
+.areaSendMessage {
     display: flex;
+    flex-shrink: 0;
     justify-content: space-between;
     align-items: center;
     height: 55px;
     background-color: #f3eeea;
 }
 
-.areaSendMessage i{
+.areaSendMessage i {
     color: #777;
     font-size: 1.3rem;
     padding: 0 30px;
 }
 
-.areaSendMessage input{
+.areaSendMessage input {
     flex-grow: 1;
     height: 70%;
     border: none;

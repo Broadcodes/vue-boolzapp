@@ -24,6 +24,13 @@
     <script type="text/javascript" src="js/data.js"></script>
 </head>
 
+<!-- 
+Milestone 5 - opzionale
+● Cancella messaggio: cliccando sul messaggio appare un menu a tendina che
+permette di cancellare il messaggio selezionato
+● Visualizzazione ora e ultimo messaggio inviato/ricevuto nella lista dei contatti
+ -->
+
 <body>
     <div id="root">
         <div class="container">
@@ -57,13 +64,6 @@
                         </div>
                     </div>
 
-                    <!-- 
-                    Milestone 4
-                    ● Ricerca utenti: scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i
-                    contatti il cui nome contiene le lettere inserite (es, Marco, Matteo Martina -> Scrivo
-                    “mar” rimangono solo Marco e Martina)
-                    -->
-
                     <!-- Barra di ricerca area di sinistra -->
                     <div class="activeSearch">
                         <div class="searchIcon">
@@ -77,8 +77,8 @@
 
                     <!-- Area di sinistra per gli account utenti -->
                     <div class="areaUsers">
-                        <div v-for="(contact, index) in contacts" v-if="showSearchedAccount().includes(contact.name)" class="user" @click="changeVisible(index)"
-                            :class="{'active': contact.visible}">
+                        <div v-for="(contact, index) in contacts" v-if="showSearchedAccount().includes(contact.name)"
+                            class="user" @click="changeVisible(index)" :class="{'active': contact.visible}">
                             <div class="graphicAccount">
                                 <img :src="getUrlAvatar(index)" :alt="getAltAvatar(index)">
                                 <div class="dataUser colorText">
@@ -86,9 +86,8 @@
                                     <p>Ultimo messaggio inviato</p>
                                 </div>
                             </div>
-                            <p v-for="(element, indexElement) in contact.messages"
-                                v-if="element.status === 'received' && indexElement > 0" class="timesLastMess">
-                                {{getDate(element.date)}}
+                            <p class="timesLastMess">
+                                {{getDateUser(contact)}}
                             </p>
                         </div>
                     </div>
@@ -101,12 +100,7 @@
                             <img :src="getUrlAvatar(index)" :alt="getAltAvatar(index)">
                             <div class="dataUser">
                                 <p>{{contact.name}}</p>
-                                <p>Ultimo accesso oggi alle
-                                    <span v-for="(element, indexElement) in contact.messages"
-                                        v-if="element.status === 'received' && indexElement > 0">
-                                        {{getDate(element.date)}}
-                                    </span>
-                                </p>
+                                <p>Ultimo accesso oggi alle {{getDateUser(contact)}}</p>
                             </div>
                         </div>
                         <div class="controllerAccount">
@@ -118,11 +112,22 @@
                     <!-- Area centrale destra dedicata alla chat -->
                     <div class="areaChat" v-for="contact in contacts" v-if="contact.visible">
                         <ul>
-                            <li v-for="textMessages in contact.messages" :class="textMessages.status">
+                            <li v-for="(textMessages, indexText) in contact.messages" :class="textMessages.status">
+                                <span @Click="showDetails(indexText)">
+                                    <i @Click="showHide" class="fa-solid fa-chevron-down"></i>
+                                </span>
                                 <p>{{textMessages.message}}</p>
-                                <p class="timeMessage">{{getDate(textMessages.date)}}</p>
+                                <p class="timeMessage">{{getDateUser(contact)}}</p>
+
+                                <div v-if="showDetailsMessage" class="boxInfoMessage" :class="{'view': indexText === indexShowDetailsMessage}">
+                                    <ul>
+                                        <li>Info Messaggio</li>
+                                        <li>Cancella Messaggio</li>
+                                    </ul>
+                                </div>
                             </li>
                         </ul>
+
                     </div>
                     <!-- Area inferiore barra grigia destra per l'invio dei messaggi-->
                     <div class="areaSendMessage">
