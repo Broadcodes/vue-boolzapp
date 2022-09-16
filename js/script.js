@@ -191,18 +191,33 @@ const app = new Vue({
                 status: ''
             };
 
+            const newMessageUser = {
+                date: '',
+                message: '',
+                status: ''
+            };
+
             this.contacts.forEach(contact => {
                 if (contact.visible === true) {
-                    newMessage.date = '10/01/2020 15:51:00';
                     newMessage.date = `${new Date().getDate()}/0${new Date().getMonth() + 1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
                     newMessage.message = this.textInput;
                     newMessage.status = 'sent';
 
                     contact.messages.push(newMessage);
+
+                    const replyMessage = setTimeout(() => {
+                        newMessageUser.date = `${new Date().getDate()}/0${new Date().getMonth() + 1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
+                        newMessageUser.message = "OK";
+                        newMessageUser.status = 'received';
+    
+                        contact.messages.push(newMessageUser);
+                    }, 1000);
                 }
             });
 
             this.textInput = '';
+
+
         }
     }
 });
