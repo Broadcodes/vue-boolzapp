@@ -6,7 +6,8 @@ const app = new Vue({
         contacts,
         indexShowDetailsMessage: '',
         showDetailsMessage: false,
-        showLastMessageSent: ''
+        showLastMessageSent: '',
+        showHideEmojisBox: false,
     },
     methods: {
         hideWindow() {
@@ -82,6 +83,7 @@ const app = new Vue({
             }
 
             this.textInput = '';
+            this.showHideEmojis();
         },
         showSearchedAccount() {
 
@@ -122,6 +124,16 @@ const app = new Vue({
         infoMessage(date){
             this.showLastMessageSent = date;
             this.hideWindow();
+        },
+        showHideEmojis(){
+            if (this.showHideEmojisBox === true) {
+                this.showHideEmojisBox = false;
+            } else {
+                this.showHideEmojisBox = true;
+            }  
+        },
+        emojiSelected(emoji){
+            this.textInput += emoji;
         }
     }
 });

@@ -92,11 +92,11 @@ permette di cancellare il messaggio selezionato
                             </p>
                         </div>
                         <div class="infoMessageUser" :class="{'close': showLastMessageSent === ''}">
-                            <span @click="showLastMessageSent = ''"><i
-                                    class="fa-solid fa-xmark"></i></span>
+                            <span @click="showLastMessageSent = ''"><i class="fa-solid fa-xmark"></i></span>
                             <div class="textLastMessage">
                                 <p>Messaggio inviato:</p>
-                                <p>{{showLastMessageSent.slice(0, 10)}} alle ore {{showLastMessageSent.slice(10, 16)}}</p>
+                                <p>{{showLastMessageSent.slice(0, 10)}} alle ore {{showLastMessageSent.slice(10, 16)}}
+                                </p>
                             </div>
 
                         </div>
@@ -142,12 +142,18 @@ permette di cancellare il messaggio selezionato
                     </div>
                     <!-- Area inferiore barra grigia destra per l'invio dei messaggi-->
                     <div class="areaSendMessage">
-                        <a href="#"><i class="fa-regular fa-face-smile"></i></a>
+                        <i v-if="showHideEmojisBox === false" @click="showHideEmojis"
+                            class="fa-regular fa-face-smile"></i>
+                        <i v-else @click="showHideEmojis" class="fa-solid fa-xmark"></i>
+                        <div v-if="showHideEmojisBox" class="smileFace">
+                            <ul>
+                                <li @click="emojiSelected(emojiObj.emoji)" v-for="emojiObj in emojis">{{emojiObj.emoji}}</li>
+                            </ul>
+                        </div>
                         <input type="text" placeholder="Scrivi un messaggio" v-model="textInput"
                             @keyup.enter="addNewMessage">
-                        <a href="#" v-if="textInput.length > 0" @click="addNewMessage"><i
-                                class="fa-solid fa-paper-plane"></i></a>
-                        <a href="#" v-else><i class="fa-solid fa-microphone"></i></a>
+                        <i v-if="textInput.length > 0" @click="addNewMessage" class="fa-solid fa-paper-plane"></i>
+                        <i v-else class="fa-solid fa-microphone"></i>
                     </div>
                 </div>
             </div>

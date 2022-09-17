@@ -52,6 +52,7 @@ body {
 
 .areaChatInUse {
     flex-grow: 1;
+    position: relative;
 }
 
 .infoAccount {
@@ -118,6 +119,7 @@ body {
     width: 40px;
     height: 40px;
     display: flex;
+    flex-shrink: 0;
     justify-content: center;
     align-items: center;
     background-color: #fff;
@@ -366,10 +368,43 @@ body {
     background-color: #f3eeea;
 }
 
-.areaSendMessage i {
+.areaSendMessage > i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
     color: #777;
     font-size: 1.3rem;
-    padding: 0 30px;
+    margin: 0 30px;
+    cursor: pointer;
+}
+
+.areaSendMessage .smileFace{
+    position: absolute;
+    bottom: 55px;
+    border-bottom: 1px solid rgb(221, 216, 213);
+    background-color: rgb(243, 238, 234);
+    width: calc(100% - 17px);
+    height: calc(100% / 4.5);
+    padding: 10px 20px;
+    overflow-y: scroll;
+}
+
+.smileFace > span{
+    position: relative;
+    right: -20px;
+}
+
+.smileFace ul{
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.smileFace ul li{
+    margin: 10px 13px;
+    font-size: 1.3rem;
+    cursor: pointer;
 }
 
 .areaSendMessage input {
