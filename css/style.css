@@ -32,6 +32,7 @@ body {
 }
 
 .areaWhatsapp {
+    overflow: hidden;
     z-index: 2;
     display: flex;
     width: 80%;
@@ -377,6 +378,18 @@ body {
     font-size: 1.3rem;
     margin: 0 30px;
     cursor: pointer;
+}
+
+.areaSendMessage #mic:active {
+    width: 30px;
+    height: 30px;
+    padding: 50px;
+    margin-left: 0px;
+    border-radius: 50px;
+    transform: translate(40px, -5px);
+    background-color: #009688;
+    color: #fff;
+    font-size: 2rem;
 }
 
 .areaSendMessage .smileFace{

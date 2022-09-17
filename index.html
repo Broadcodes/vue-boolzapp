@@ -146,7 +146,7 @@
                         <input type="text" placeholder="Scrivi un messaggio" v-model="textInput"
                             @keyup.enter="addNewMessage">
                         <i v-if="textInput.length > 0" @click="addNewMessage" class="fa-solid fa-paper-plane"></i>
-                        <i v-else class="fa-solid fa-microphone"></i>
+                        <i v-else id="mic" class="fa-solid fa-microphone"></i>
                     </div>
                 </div>
             </div>
