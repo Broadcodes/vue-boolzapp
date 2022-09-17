@@ -5,7 +5,8 @@ const app = new Vue({
         userSearch: '',
         contacts,
         indexShowDetailsMessage: '',
-        showDetailsMessage: false
+        showDetailsMessage: false,
+        showLastMessageSent: ''
     },
     methods: {
         hideWindow() {
@@ -116,6 +117,11 @@ const app = new Vue({
             contacts[indexContact].messages = arrComplete;
             this.hideWindow();
             this.showDetailsMessage = false
+            this.showLastMessageSent = '';
+        },
+        infoMessage(date){
+            this.showLastMessageSent = date;
+            this.hideWindow();
         }
     }
 });

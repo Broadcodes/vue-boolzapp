@@ -77,7 +77,8 @@ permette di cancellare il messaggio selezionato
 
                     <!-- Area di sinistra per gli account utenti -->
                     <div class="areaUsers">
-                        <div v-for="(contact, index) in contacts" v-if="showSearchedAccount().includes(contact.name)"
+                        <div :class="{'contactsUsers' : showLastMessageSent.length > 0}"
+                            v-for="(contact, index) in contacts" v-if="showSearchedAccount().includes(contact.name)"
                             class="user" @click="changeVisible(index)" :class="{'active': contact.visible}">
                             <div class="graphicAccount">
                                 <img :src="getUrlAvatar(index)" :alt="getAltAvatar(index)">
@@ -89,6 +90,15 @@ permette di cancellare il messaggio selezionato
                             <p class="timesLastMess">
                                 {{getDateUser(contact)}}
                             </p>
+                        </div>
+                        <div class="infoMessageUser" :class="{'close': showLastMessageSent === ''}">
+                            <span @click="showLastMessageSent = ''"><i
+                                    class="fa-solid fa-xmark"></i></span>
+                            <div class="textLastMessage">
+                                <p>Messaggio inviato:</p>
+                                <p>{{showLastMessageSent.slice(0, 10)}} alle ore {{showLastMessageSent.slice(10, 16)}}</p>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -119,9 +129,10 @@ permette di cancellare il messaggio selezionato
                                 <p>{{textMessages.message}}</p>
                                 <p class="timeMessage">{{textMessages.date.slice(11, 16)}}</p>
 
-                                <div v-if="showDetailsMessage" class="boxInfoMessage" :class="{'view': indexText === indexShowDetailsMessage}">
+                                <div v-if="showDetailsMessage" class="boxInfoMessage"
+                                    :class="{'view': indexText === indexShowDetailsMessage}">
                                     <ul>
-                                        <li>Info Messaggio</li>
+                                        <li @click="infoMessage(textMessages.date)">Info Messaggio</li>
                                         <li @click="deleteMessage(indexContact)">Cancella Messaggio</li>
                                     </ul>
                                 </div>
