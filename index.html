@@ -110,19 +110,19 @@ permette di cancellare il messaggio selezionato
                         </div>
                     </div>
                     <!-- Area centrale destra dedicata alla chat -->
-                    <div class="areaChat" v-for="contact in contacts" v-if="contact.visible">
+                    <div class="areaChat" v-for="(contact, indexContact) in contacts" v-if="contact.visible">
                         <ul>
                             <li v-for="(textMessages, indexText) in contact.messages" :class="textMessages.status">
-                                <span @Click="showDetails(indexText)">
-                                    <i @Click="showHide" class="fa-solid fa-chevron-down"></i>
+                                <span @Click="showDetails(indexText, indexContact)">
+                                    <i @Click="showHide(contact.name)" class="fa-solid fa-chevron-down"></i>
                                 </span>
                                 <p>{{textMessages.message}}</p>
                                 <p class="timeMessage">{{getDateUser(contact)}}</p>
 
                                 <div v-if="showDetailsMessage" class="boxInfoMessage" :class="{'view': indexText === indexShowDetailsMessage}">
-                                    <ul>
+                                    <ul :class="{'boxInfoMessage': indexContact !== indexVerificContact}" >
                                         <li>Info Messaggio</li>
-                                        <li>Cancella Messaggio</li>
+                                        <li @click="deleteMessage(textMessages, indexText)">Cancella Messaggio</li>
                                     </ul>
                                 </div>
                             </li>

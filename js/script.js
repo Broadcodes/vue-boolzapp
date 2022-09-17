@@ -5,6 +5,7 @@ const app = new Vue({
         userSearch: '',
         contacts,
         indexShowDetailsMessage: '',
+        indexVerificContact: '0',
         showDetailsMessage: false
     },
     methods: {
@@ -70,6 +71,7 @@ const app = new Vue({
             this.textInput = '';
         },
         showSearchedAccount() {
+
             let element = [];
 
             this.contacts.forEach(contact => {
@@ -81,16 +83,34 @@ const app = new Vue({
             });
             return element;
         },
-        showDetails(index) {
-            const element = this.indexShowDetailsMessage = index;
-            return element;
+        showDetails(indexText, indexContact) {
+            this.indexShowDetailsMessage = indexText;
+            this.indexVerificContact = indexContact;
+            console.log(indexContact);
         },
         showHide() {
-            if(this.showDetailsMessage === true){
+            
+            if (this.showDetailsMessage === true) {
                 this.showDetailsMessage = false;
             } else {
                 this.showDetailsMessage = true;
             }
+        },
+
+        prova(name){
+            console.log(name);
+        },
+
+
+
+        deleteMessage(message, index) {
+
+            let newArray = [];
+            // console.log(message);
+
+            this.contacts.forEach(contact => {
+        
+            });
         }
 
     }
