@@ -74,9 +74,9 @@ const app = new Vue({
 
                         const replyMessage = setTimeout(() => {
                             newMessageUser.date = `${new Date().getDate()}/0${new Date().getMonth() + 1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
-                            
+
                             const numberRandom = Math.floor(Math.random() * answerUser.length) + 1;
-    
+
                             newMessageUser.message = answerUser[numberRandom].answer;
                             newMessageUser.status = 'received';
 
@@ -87,7 +87,9 @@ const app = new Vue({
             }
 
             this.textInput = '';
-            this.showHideEmojis();
+            if (this.showHideEmojisBox) {
+                this.showHideEmojis();
+            }
         },
         showSearchedAccount() {
 
@@ -125,18 +127,18 @@ const app = new Vue({
             this.showDetailsMessage = false
             this.showLastMessageSent = '';
         },
-        infoMessage(date){
+        infoMessage(date) {
             this.showLastMessageSent = date;
             this.hideWindow();
         },
-        showHideEmojis(){
+        showHideEmojis() {
             if (this.showHideEmojisBox === true) {
                 this.showHideEmojisBox = false;
             } else {
                 this.showHideEmojisBox = true;
-            }  
+            }
         },
-        emojiSelected(emoji){
+        emojiSelected(emoji) {
             this.textInput += emoji;
         }
     }
