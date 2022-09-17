@@ -77,9 +77,9 @@ permette di cancellare il messaggio selezionato
 
                     <!-- Area di sinistra per gli account utenti -->
                     <div class="areaUsers">
-                        <div :class="{'contactsUsers' : showLastMessageSent.length > 0}"
+                        <div :class="{'contactsUsers' : showLastMessageSent.length > 0, 'active': contact.visible}"
                             v-for="(contact, index) in contacts" v-if="showSearchedAccount().includes(contact.name)"
-                            class="user" @click="changeVisible(index)" :class="{'active': contact.visible}">
+                            class="user" @click="changeVisible(index)">
                             <div class="graphicAccount">
                                 <img :src="getUrlAvatar(index)" :alt="getAltAvatar(index)">
                                 <div class="dataUser colorText">
