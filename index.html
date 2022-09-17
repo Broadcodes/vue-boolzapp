@@ -117,12 +117,12 @@ permette di cancellare il messaggio selezionato
                                     <i @Click="showHide(contact.name)" class="fa-solid fa-chevron-down"></i>
                                 </span>
                                 <p>{{textMessages.message}}</p>
-                                <p class="timeMessage">{{getDateUser(contact)}}</p>
+                                <p class="timeMessage">{{textMessages.date.slice(11, 16)}}</p>
 
                                 <div v-if="showDetailsMessage" class="boxInfoMessage" :class="{'view': indexText === indexShowDetailsMessage}">
-                                    <ul :class="{'boxInfoMessage': indexContact !== indexVerificContact}" >
+                                    <ul>
                                         <li>Info Messaggio</li>
-                                        <li @click="deleteMessage(indexContact, indexText)">Cancella Messaggio</li>
+                                        <li @click="deleteMessage(indexContact)">Cancella Messaggio</li>
                                     </ul>
                                 </div>
                             </li>

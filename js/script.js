@@ -5,11 +5,10 @@ const app = new Vue({
         userSearch: '',
         contacts,
         indexShowDetailsMessage: '',
-        indexVerificContact: '0',
         showDetailsMessage: false
     },
     methods: {
-        hideWindow(){
+        hideWindow() {
             this.showDetailsMessage = false;
         },
         getUrlAvatar(index) {
@@ -28,15 +27,25 @@ const app = new Vue({
         },
         getDateUser(contact) {
 
-            const secondArr = [];
+            const sent = [];
+            const received = [];
 
             contact.messages.forEach(elementArr => {
                 if (elementArr.status === 'received') {
-                    secondArr.push(elementArr.date);
+                    received.push(elementArr.date);
+                }
+                if (elementArr.status === 'sent') {
+                    sent.push(elementArr.date);
                 }
             });
 
-            return `${secondArr[secondArr.length - 1].slice(11, 16)}`;
+            if (received.length > 0) {
+                return `${received[received.length - 1].slice(11, 16)}`;
+            } else if (sent.length > 0) {
+                return `${sent[sent.length - 1].slice(11, 16)}`;
+            } else {
+                return `${new Date().getHours()}:${new Date().getMinutes()}`;
+            }
         },
         addNewMessage() {
             const newMessage = {
@@ -86,12 +95,11 @@ const app = new Vue({
             });
             return element;
         },
-        showDetails(indexText, indexContact) {
+        showDetails(indexText) {
             this.indexShowDetailsMessage = indexText;
-            this.indexVerificContact = indexContact;
         },
         showHide() {
-            
+
             if (this.showDetailsMessage === true) {
                 this.showDetailsMessage = false;
             } else {
@@ -99,17 +107,15 @@ const app = new Vue({
             }
         },
 
-        deleteMessage(indexContact, indexText) {
-            
-            let newArr = [];
+        deleteMessage(indexContact) {
+            const arrComplete = [];
+            const arrFirstPart = contacts[indexContact].messages.slice(0, this.indexShowDetailsMessage);
+            const arrSecondPart = contacts[indexContact].messages.slice(this.indexShowDetailsMessage + 1);
+            arrComplete.push(...arrFirstPart, ...arrSecondPart);
 
-            for (let index = 0; index < contacts[indexContact].messages.length; index++) { 
-                if(contacts[indexContact].messages[index] !== contacts[indexContact].messages[indexText]){
-                       newArr.push(contacts[indexContact].messages[index]);
-                }
-            }
-
-            contacts[indexContact].messages = newArr;
+            contacts[indexContact].messages = arrComplete;
+            this.hideWindow();
+            this.showDetailsMessage = false
         }
     }
 });
