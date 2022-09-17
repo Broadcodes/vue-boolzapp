@@ -4,6 +4,7 @@ const app = new Vue({
         textInput: '',
         userSearch: '',
         contacts,
+        answerUser,
         indexShowDetailsMessage: '',
         showDetailsMessage: false,
         showLastMessageSent: '',
@@ -73,7 +74,10 @@ const app = new Vue({
 
                         const replyMessage = setTimeout(() => {
                             newMessageUser.date = `${new Date().getDate()}/0${new Date().getMonth() + 1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
-                            newMessageUser.message = "OK";
+                            
+                            const numberRandom = Math.floor(Math.random() * answerUser.length) + 1;
+    
+                            newMessageUser.message = answerUser[numberRandom].answer;
                             newMessageUser.status = 'received';
 
                             contact.messages.push(newMessageUser);
