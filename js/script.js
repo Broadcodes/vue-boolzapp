@@ -9,6 +9,9 @@ const app = new Vue({
         showDetailsMessage: false
     },
     methods: {
+        hideWindow(){
+            this.showDetailsMessage = false;
+        },
         getUrlAvatar(index) {
             return `img/avatar${this.contacts[index].avatar}.jpg`;
         },
@@ -86,7 +89,6 @@ const app = new Vue({
         showDetails(indexText, indexContact) {
             this.indexShowDetailsMessage = indexText;
             this.indexVerificContact = indexContact;
-            console.log(indexContact);
         },
         showHide() {
             
@@ -97,21 +99,17 @@ const app = new Vue({
             }
         },
 
-        prova(name){
-            console.log(name);
-        },
+        deleteMessage(indexContact, indexText) {
+            
+            let newArr = [];
 
+            for (let index = 0; index < contacts[indexContact].messages.length; index++) { 
+                if(contacts[indexContact].messages[index] !== contacts[indexContact].messages[indexText]){
+                       newArr.push(contacts[indexContact].messages[index]);
+                }
+            }
 
-
-        deleteMessage(message, index) {
-
-            let newArray = [];
-            // console.log(message);
-
-            this.contacts.forEach(contact => {
-        
-            });
+            contacts[indexContact].messages = newArr;
         }
-
     }
 });

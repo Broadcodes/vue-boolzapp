@@ -36,7 +36,7 @@ permette di cancellare il messaggio selezionato
         <div class="container">
             <span></span> <!-- Span utilizzato per ricreare la barra verde di sfondo -->
             <div class="areaWhatsapp">
-                <div class="areaContactUser">
+                <div class="areaContactUser" @Click="hideWindow">
 
                     <!-- Area superiore barra grigia sinistra -->
                     <div class="infoAccount">
@@ -113,7 +113,7 @@ permette di cancellare il messaggio selezionato
                     <div class="areaChat" v-for="(contact, indexContact) in contacts" v-if="contact.visible">
                         <ul>
                             <li v-for="(textMessages, indexText) in contact.messages" :class="textMessages.status">
-                                <span @Click="showDetails(indexText, indexContact)">
+                                <span @Click="showDetails(indexText)">
                                     <i @Click="showHide(contact.name)" class="fa-solid fa-chevron-down"></i>
                                 </span>
                                 <p>{{textMessages.message}}</p>
@@ -122,7 +122,7 @@ permette di cancellare il messaggio selezionato
                                 <div v-if="showDetailsMessage" class="boxInfoMessage" :class="{'view': indexText === indexShowDetailsMessage}">
                                     <ul :class="{'boxInfoMessage': indexContact !== indexVerificContact}" >
                                         <li>Info Messaggio</li>
-                                        <li @click="deleteMessage(textMessages, indexText)">Cancella Messaggio</li>
+                                        <li @click="deleteMessage(indexContact, indexText)">Cancella Messaggio</li>
                                     </ul>
                                 </div>
                             </li>
