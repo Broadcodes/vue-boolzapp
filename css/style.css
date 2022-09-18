@@ -184,7 +184,7 @@ body {
     overflow-y: scroll;
 }
 
-.contactsUsers{
+.contactsUsers {
     display: none;
 }
 
@@ -229,7 +229,7 @@ body {
     background-color: #f3eeea;
 }
 
-.infoMessageUser span i{
+.infoMessageUser span i {
     position: absolute;
     top: 10px;
     right: 15px;
@@ -238,22 +238,22 @@ body {
     cursor: pointer;
 }
 
-.infoMessageUser.close{
+.infoMessageUser.close {
     display: none;
 }
 
-.infoMessageUser .textLastMessage{
+.infoMessageUser .textLastMessage {
     width: 100%;
     padding: 30px 20px;
     display: inline-block;
     background-color: rgb(247, 247, 247);
 }
 
-.infoMessageUser p{
+.infoMessageUser p {
     line-height: 1.7rem;
 }
 
-.infoMessageUser p:nth-child(1){
+.infoMessageUser p:nth-child(1) {
     font-weight: bolder;
 }
 
@@ -265,7 +265,7 @@ body {
     flex-grow: 1;
 }
 
-.areaChat > ul {
+.areaChat>ul {
     list-style-type: none;
     width: 100%;
     padding: 50px 75px;
@@ -275,7 +275,7 @@ body {
     top: 0px;
 }
 
-.areaChat > ul > li {
+.areaChat>ul>li {
     display: flex;
     width: 40%;
     padding: 10px;
@@ -285,17 +285,17 @@ body {
     position: relative;
 }
 
-.areaChat > ul > li p{
+.areaChat>ul>li p {
     padding-right: 20px;
     line-height: 1.3rem;
 }
 
-.areaChat > ul > li span,
+.areaChat>ul>li span,
 .messageDetail {
     display: none;
 }
 
-.areaChat > ul > li:hover span {
+.areaChat>ul>li:hover span {
     position: absolute;
     top: 12px;
     right: 12px;
@@ -308,15 +308,15 @@ body {
     z-index: 5;
 }
 
-.boxInfoMessage{
+.boxInfoMessage {
     display: none;
 }
 
-.areaChat > ul > li .boxInfoMessage.view{
+.areaChat>ul>li .boxInfoMessage.view {
     display: block;
 }
 
-.boxInfoMessage > ul{
+.boxInfoMessage>ul {
     position: absolute;
     top: 30px;
     right: 7px;
@@ -328,7 +328,7 @@ body {
     z-index: 5;
 }
 
-.boxInfoMessage > ul li{
+.boxInfoMessage>ul li {
     list-style-type: none;
     display: flex;
     padding-left: 20px;
@@ -338,16 +338,16 @@ body {
     cursor: pointer;
 }
 
-.boxInfoMessage > ul li:hover{
+.boxInfoMessage>ul li:hover {
     background-color: #f6f6f6;
 }
 
-.areaChat > ul .sent {
+.areaChat>ul .sent {
     background-color: #d5f9ba;
     align-self: end;
 }
 
-.areaChat > ul > li .timeMessage {
+.areaChat>ul>li .timeMessage {
     position: absolute;
     font-size: 0.5rem;
     color: #9d9d9d;
@@ -355,7 +355,7 @@ body {
     right: -8px;
 }
 
-.areaChat > ul .received {
+.areaChat>ul .received {
     background-color: #fff;
     align-self: start;
 }
@@ -369,7 +369,7 @@ body {
     background-color: #f3eeea;
 }
 
-.areaSendMessage > i {
+.areaSendMessage>i {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -392,7 +392,7 @@ body {
     font-size: 2rem;
 }
 
-.areaSendMessage .smileFace{
+.areaSendMessage .smileFace {
     position: absolute;
     bottom: 55px;
     border-bottom: 1px solid rgb(221, 216, 213);
@@ -403,18 +403,18 @@ body {
     overflow-y: scroll;
 }
 
-.smileFace > span{
+.smileFace>span {
     position: relative;
     right: -20px;
 }
 
-.smileFace ul{
+.smileFace ul {
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
 }
 
-.smileFace ul li{
+.smileFace ul li {
     margin: 10px 13px;
     font-size: 1.3rem;
     cursor: pointer;
@@ -426,4 +426,83 @@ body {
     border: none;
     padding: 0 10px;
     border-radius: 5px;
+}
+
+.recordAudio {
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-grow: 1;
+    height: 70%;
+    background-color: #fff;
+    padding: 0 10px;
+    border-radius: 5px;
+}
+
+.recordAudio i {
+    position: absolute;
+    font-size: 1.2rem;
+}
+
+.recordAudio i:nth-child(1) {
+    color: #a4a4a4;
+    z-index: 20;
+}
+
+.recordAudio i:nth-child(2) {
+    top: 10px;
+    left: 11px;
+    color: red;
+    z-index: 21;
+}
+
+.recordAudio i:nth-child(2).delete {
+    animation-name: moveMic;
+    animation-duration: 2s;
+}
+
+@keyframes moveMic {
+    0% {
+        top: 10px;
+        left: 11px;
+    }
+
+    50% {
+        top: -100px;
+        left: 11px;
+        transform: rotate(360deg);
+    }
+
+    100% {
+        top: 10px;
+        left: 11px;
+        transform: rotate(360deg);
+    }
+}
+
+.recordAudio i:nth-child(2).rec {
+    animation-name: recMic;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes recMic {
+    0% {
+        color: red;
+    }
+
+    50% {
+        color: rgba(255, 0, 0, 0);
+    }
+
+    100% {
+        color: red;
+    }
+}
+
+.recordAudio span {
+    position: absolute;
+    top: 8px;
+    left: 45px;
+    font-size: 1.1rem;
 }

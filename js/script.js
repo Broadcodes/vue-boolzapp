@@ -10,7 +10,10 @@ const app = new Vue({
         showLastMessageSent: '',
         showHideEmojisBox: false,
         isDescriptionLastAccess: false,
-        showDescriptionLastAccess: 'Sta scrivendo...'
+        showDescriptionLastAccess: 'Sta scrivendo...',
+        isAudio: false,
+        timerRec: '00:00',
+        time: ''
     },
     methods: {
         hideWindow() {
@@ -46,12 +49,12 @@ const app = new Vue({
 
             const hour = new Date().getHours().toFixed();
             let minutes = new Date().getMinutes().toFixed();
-  
-            if(hour.length < 2){
+
+            if (hour.length < 2) {
                 hour = '0' + hour;
             }
 
-            if(minutes.length < 2){
+            if (minutes.length < 2) {
                 minutes = '0' + minutes;
             }
 
@@ -78,8 +81,6 @@ const app = new Vue({
 
             if (this.textInput.length > 0) {
 
-                // console.log(this.isDescriptionLastAccess);
-
                 this.isDescriptionLastAccess = true;
 
                 this.contacts.forEach(contact => {
@@ -89,8 +90,6 @@ const app = new Vue({
                         newMessage.status = 'sent';
 
                         contact.messages.push(newMessage);
-
-
 
                         const replyMessage = setTimeout(() => {
                             newMessageUser.date = `${new Date().getDate()}/0${new Date().getMonth() + 1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
@@ -163,6 +162,48 @@ const app = new Vue({
         },
         emojiSelected(emoji) {
             this.textInput += emoji;
+        },
+        showBoxAudio() {
+            if (this.isAudio === true) {
+                this.isAudio = false;
+                clearInterval(this.time);
+                this.timerRec = '00:00';
+            } else {
+                this.isAudio = true;
+                this.timer();
+            }            
+        },
+        timer() {
+
+            let min = 0;
+            let sec = 0;
+
+            let minToString = '';
+            let secToString = '';
+
+            this.time = setInterval(() => {
+
+                if (sec < 59) {
+                    sec++;
+                } else {
+                    sec = 0;
+                    min++;
+                }
+
+                if (min.toFixed().length < 2) {
+                    minToString = '0' + min.toFixed();
+                } else {
+                    minToString = min.toFixed();
+                }
+
+                if (sec.toFixed().length < 2) {
+                    secToString = '0' + sec.toFixed();
+                } else {
+                    secToString = sec.toFixed();
+                }
+
+                this.timerRec = `${minToString}:${secToString}`;
+            }, 1000);
         }
     }
 });

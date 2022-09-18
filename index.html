@@ -141,13 +141,20 @@
                         <i v-else @click="showHideEmojis" class="fa-solid fa-xmark"></i>
                         <div v-if="showHideEmojisBox" class="smileFace">
                             <ul>
-                                <li @click="emojiSelected(emojiObj.emoji)" v-for="emojiObj in emojis">{{emojiObj.emoji}}</li>
+                                <li @click="emojiSelected(emojiObj.emoji)" v-for="emojiObj in emojis">
+                                    {{emojiObj.emoji}}
+                                </li>
                             </ul>
                         </div>
-                        <input type="text" placeholder="Scrivi un messaggio" v-model="textInput"
+                        <input v-if="!isAudio" type="text" placeholder="Scrivi un messaggio" v-model="textInput"
                             @keyup.enter="addNewMessage">
+                        <div v-else class="recordAudio">
+                            <i class="fa-solid fa-trash"></i>
+                            <i class="fa-solid fa-microphone"></i>
+                            <span>{{timerRec}}</span>
+                        </div>
                         <i v-if="textInput.length > 0" @click="addNewMessage" class="fa-solid fa-paper-plane"></i>
-                        <i v-else id="mic" class="fa-solid fa-microphone"></i>
+                        <i v-else id="mic" @mousedown="showBoxAudio" @mouseup="showBoxAudio" class="fa-solid fa-microphone"></i>
                     </div>
                 </div>
             </div>
