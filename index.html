@@ -103,7 +103,8 @@
                             <img :src="getUrlAvatar(index)" :alt="getAltAvatar(index)">
                             <div class="dataUser">
                                 <p>{{contact.name}}</p>
-                                <p>Ultimo accesso oggi alle {{getDateUser(contact)}}</p>
+                                <p v-if="!isDescriptionLastAccess">Ultimo accesso oggi alle {{getDateUser(contact)}}</p>
+                                <p v-else>{{showDescriptionLastAccess}}</p>
                             </div>
                         </div>
                         <div class="controllerAccount">

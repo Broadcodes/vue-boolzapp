@@ -9,6 +9,8 @@ const app = new Vue({
         showDetailsMessage: false,
         showLastMessageSent: '',
         showHideEmojisBox: false,
+        isDescriptionLastAccess: false,
+        showDescriptionLastAccess: 'Sta scrivendo...'
     },
     methods: {
         hideWindow() {
@@ -42,12 +44,23 @@ const app = new Vue({
                 }
             });
 
+            const hour = new Date().getHours().toFixed();
+            let minutes = new Date().getMinutes().toFixed();
+  
+            if(hour.length < 2){
+                hour = '0' + hour;
+            }
+
+            if(minutes.length < 2){
+                minutes = '0' + minutes;
+            }
+
             if (received.length > 0) {
                 return `${received[received.length - 1].slice(11, 16)}`;
             } else if (sent.length > 0) {
                 return `${sent[sent.length - 1].slice(11, 16)}`;
             } else {
-                return `${new Date().getHours()}:${new Date().getMinutes()}`;
+                return `${hour}:${minutes}`;
             }
         },
         addNewMessage() {
@@ -64,6 +77,11 @@ const app = new Vue({
             };
 
             if (this.textInput.length > 0) {
+
+                // console.log(this.isDescriptionLastAccess);
+
+                this.isDescriptionLastAccess = true;
+
                 this.contacts.forEach(contact => {
                     if (contact.visible === true) {
                         newMessage.date = `${new Date().getDate()}/0${new Date().getMonth() + 1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
@@ -71,6 +89,8 @@ const app = new Vue({
                         newMessage.status = 'sent';
 
                         contact.messages.push(newMessage);
+
+
 
                         const replyMessage = setTimeout(() => {
                             newMessageUser.date = `${new Date().getDate()}/0${new Date().getMonth() + 1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
@@ -81,10 +101,13 @@ const app = new Vue({
                             newMessageUser.status = 'received';
 
                             contact.messages.push(newMessageUser);
+                            this.isDescriptionLastAccess = false;
                         }, 1000);
                     }
                 });
             }
+
+            // this.isDescriptionLastAccess = false;
 
             this.textInput = '';
             if (this.showHideEmojisBox) {
