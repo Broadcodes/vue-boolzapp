@@ -28,6 +28,7 @@ const app = new Vue({
         getAltAvatar(index) {
             return `Avatar${this.contacts[index].avatar}`;
         },
+        // Nesessaria a stabilire l'account selezionato
         changeVisible(index) {
             this.contacts.forEach((contact, indexElement) => {
                 this.contacts[indexElement].visible = true;
@@ -41,6 +42,7 @@ const app = new Vue({
             const sent = [];
             const received = [];
 
+            // Salvo i dati in due array in base allo status
             contact.messages.forEach(elementArr => {
                 if (elementArr.status === 'received') {
                     received.push(elementArr.date);
@@ -50,6 +52,7 @@ const app = new Vue({
                 }
             });
 
+            // Creazione della data (orario) attuale
             let hour = new Date().getHours().toFixed();
             let minutes = new Date().getMinutes().toFixed();
 
@@ -61,6 +64,7 @@ const app = new Vue({
                 minutes = '0' + minutes;
             }
 
+            // Estrapolo dalla data solo l'orario 
             if (received.length > 0) {
                 return `${received[received.length - 1].slice(11, 16)}`;
             } else if (sent.length > 0) {
@@ -85,7 +89,7 @@ const app = new Vue({
             if (this.textInput.length > 0) {
 
                 this.isDescriptionLastAccess = true;
-
+                // Creo un nuovo dato inserendo oltre al messaggio anche l'ora di creazione
                 this.contacts.forEach(contact => {
                     if (contact.visible === true) {
                         newMessage.date = `${new Date().getDate()}/0${new Date().getMonth() + 1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
@@ -109,6 +113,7 @@ const app = new Vue({
                 });
             }
 
+            // Nasconde la finestra delle emojis se clicco nell'area principale
             this.textInput = '';
             if (this.showHideEmojisBox) {
                 this.showHideEmojis();
@@ -118,6 +123,7 @@ const app = new Vue({
 
             let element = [];
 
+            // Effettuo la ricerca degli account
             this.contacts.forEach(contact => {
                 for (let index = 0; index < contact.name.length; index++) {
                     if (contact.name.toLowerCase().includes(this.userSearch.toLowerCase())) {
@@ -187,7 +193,8 @@ const app = new Vue({
             trash.classList.add("view");
         },
         timer() {
-
+            // Area che gestisce la registrazione audio.
+            // In particolare mostra nella barra in basso il timer di registrazione
             let min = 0;
             let sec = 0;
 
