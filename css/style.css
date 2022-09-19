@@ -259,7 +259,6 @@ body {
 
 .areaChatInUse .areaChat {
     overflow-y: scroll;
-    display: flex;
     /* flex-direction: column-reverse; */
     background-image: url("../img/mine.jpg");
     flex-grow: 1;
