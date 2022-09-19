@@ -165,6 +165,7 @@ const app = new Vue({
             this.textInput += emoji;
         },
         showBoxAudio() {
+
             if (this.isAudio === true) {
                 clearInterval(this.time);
                 this.isStopAudio = true;
@@ -176,7 +177,14 @@ const app = new Vue({
             } else {
                 this.isAudio = true;
                 this.timer();
-            }            
+            }
+
+            const trash = document.getElementById("trash");
+            const microphone = document.getElementById("microphone");
+
+            microphone.classList.remove("rec");
+            microphone.classList.add("delete");
+            trash.classList.add("view");
         },
         timer() {
 
@@ -209,6 +217,6 @@ const app = new Vue({
 
                 this.timerRec = `${minToString}:${secToString}`;
             }, 1000);
-        }
+        },
     }
 });

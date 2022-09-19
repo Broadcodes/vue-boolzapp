@@ -389,15 +389,22 @@ body {
     background-color: #009688;
     color: #fff;
     font-size: 2rem;
-}
-
+    position: relative;
+    right: 0px;
+    /* animation-name: moveOrizontMic;
+    animation-duration: 1.5s; */
+  }
+  
+  /* @keyframes moveOrizontMic {
+    from {right: 0px;}
+    to {right: 130px;}
+  } */
 
 .areaSendMessage .disabled {
     cursor: not-allowed;
     pointer-events: none;
 }
  
-
 .areaSendMessage .smileFace {
     position: absolute;
     bottom: 55px;

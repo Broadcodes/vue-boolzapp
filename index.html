@@ -149,8 +149,8 @@
                         <input v-if="!isAudio" type="text" placeholder="Scrivi un messaggio" v-model="textInput"
                             @keyup.enter="addNewMessage">
                         <div v-else class="recordAudio">
-                            <i class="fa-solid fa-trash" :class="{'view': isStopAudio}"></i>
-                            <i class="fa-solid fa-microphone delete" :class="{'rec': !isStopAudio}"></i>
+                            <i id="trash" class="fa-solid fa-trash"></i>
+                            <i id="microphone" class="fa-solid fa-microphone rec"></i>
                             <span>{{timerRec}}</span>
                         </div>
                         <i v-if="textInput.length > 0" @click="addNewMessage" class="fa-solid fa-paper-plane"></i>
