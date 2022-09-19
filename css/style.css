@@ -392,6 +392,13 @@ body {
     font-size: 2rem;
 }
 
+
+.areaSendMessage .disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+ 
+
 .areaSendMessage .smileFace {
     position: absolute;
     bottom: 55px;
@@ -447,13 +454,20 @@ body {
 .recordAudio i:nth-child(1) {
     color: #a4a4a4;
     z-index: 20;
+    display: none;
+    position: relative;
+    z-index: 10;
+}
+
+.recordAudio i:nth-child(1).view{
+    display: block !important;
 }
 
 .recordAudio i:nth-child(2) {
     top: 10px;
     left: 11px;
     color: red;
-    z-index: 21;
+    z-index: 9;
 }
 
 .recordAudio i:nth-child(2).delete {

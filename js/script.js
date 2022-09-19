@@ -12,8 +12,11 @@ const app = new Vue({
         isDescriptionLastAccess: false,
         showDescriptionLastAccess: 'Sta scrivendo...',
         isAudio: false,
+        isStopAudio: false,
         timerRec: '00:00',
-        time: ''
+        time: '',
+
+        isRecVoice: false
     },
     methods: {
         hideWindow() {
@@ -47,7 +50,7 @@ const app = new Vue({
                 }
             });
 
-            const hour = new Date().getHours().toFixed();
+            let hour = new Date().getHours().toFixed();
             let minutes = new Date().getMinutes().toFixed();
 
             if (hour.length < 2) {
@@ -106,8 +109,6 @@ const app = new Vue({
                 });
             }
 
-            // this.isDescriptionLastAccess = false;
-
             this.textInput = '';
             if (this.showHideEmojisBox) {
                 this.showHideEmojis();
@@ -165,9 +166,13 @@ const app = new Vue({
         },
         showBoxAudio() {
             if (this.isAudio === true) {
-                this.isAudio = false;
                 clearInterval(this.time);
-                this.timerRec = '00:00';
+                this.isStopAudio = true;
+                setTimeout(() => {
+                    this.isAudio = false;
+                    this.timerRec = '00:00';
+                    this.isStopAudio = false;
+                }, 1500);
             } else {
                 this.isAudio = true;
                 this.timer();
